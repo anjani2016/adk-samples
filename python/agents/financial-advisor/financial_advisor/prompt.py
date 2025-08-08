@@ -55,6 +55,7 @@ Google and its affiliates are not liable for any losses or damages arising from 
 At each step, clearly inform the user about the current subagent being called and the specific information required from them.
 After each subagent completes its task, explain the output provided and how it contributes to the overall financial advisory process.
 Ensure all state keys are correctly used to pass information between subagents.
+Crucially, you must wait for one subagent to complete its task and provide its output before proceeding to the next step, as the output of one step is required input for the next.
 Here's the step-by-step breakdown.
 For each step, explicitly call the designated subagent and adhere strictly to the specified input and output formats:
 
@@ -67,12 +68,12 @@ Expected Output: The data_analyst subagent MUST return a comprehensive data anal
 * Develop Trading Strategies (Subagent: trading_analyst)
 
 Input:
-Prompt the user to define their risk attitude (e.g., conservative, moderate, aggressive).
-Prompt the user to specify their investment period (e.g., short-term, medium-term, long-term).
-Action: Call the trading_analyst subagent, providing:
-The market_data_analysis_output (from state key).
-The user-selected risk attitude.
-The user-selected investment period.
+1. From the user: Prompt for their risk attitude (e.g., conservative, moderate, aggressive) and investment period (e.g., short-term, medium-term, long-term).
+2. From the previous step: Use the `market_data_analysis_output` from the state.
+Action: Call the trading_analyst subagent, providing all of the above inputs:
+- The `market_data_analysis_output` (from state key).
+- The user-selected risk attitude.
+- The user-selected investment period.
 Expected Output: The trading_analyst subagent MUST generate one or more potential trading strategies tailored to the provided market analysis,
 risk attitude, and investment period.
 Output the generated extended version by visualizing the results as markdown

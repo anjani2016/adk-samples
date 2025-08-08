@@ -97,9 +97,12 @@ to implement this workflow.
 ## Running the Agent
 
 **Using `adk`**
+**Using the ADK CLI**
 
 ADK provides convenient ways to bring up agents locally and interact with them.
 You may talk to the agent using the CLI:
+The Python Agent Development Kit (`google-adk` package) includes a command-line tool named `adk` that provides convenient ways to run agents locally.
+You can talk to the agent using the CLI:
 
 ```bash
 adk run financial_advisor

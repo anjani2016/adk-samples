@@ -29,12 +29,13 @@ MODEL = "gemini-2.5-pro"
 financial_coordinator = LlmAgent(
     name="financial_coordinator",
     model=MODEL,
-    description=(
-        "guide users through a structured process to receive financial "
-        "advice by orchestrating a series of expert subagents. help them "
-        "analyze a market ticker, develop trading strategies, define "
-        "execution plans, and evaluate the overall risk."
+    description=(  # This description is for the model, used when this agent is a tool.
+        "Guides a user through a structured financial advice process by "
+        "orchestrating sub-agents to analyze tickers, develop trading "
+        "strategies, define execution plans, and evaluate risk."
     ),
+    # The 'instruction' is a system prompt that defines the agent's role,
+    # personality, and the high-level plan it should follow.
     instruction=prompt.FINANCIAL_COORDINATOR_PROMPT,
     output_key="financial_coordinator_output",
     tools=[
@@ -45,4 +46,5 @@ financial_coordinator = LlmAgent(
     ],
 )
 
+# The root_agent is the conventional entry point for the ADK to run this agent.
 root_agent = financial_coordinator

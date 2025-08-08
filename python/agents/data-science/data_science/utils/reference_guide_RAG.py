@@ -41,6 +41,15 @@ vertexai.init(project=PROJECT_ID, location="us-central1")
 
 
 def create_RAG_corpus():
+    """Creates a new RAG corpus or retrieves an existing one by display_name."""
+    existing_corpora = rag.list_corpora()
+    for existing_corpus in existing_corpora:
+        if existing_corpus.display_name == display_name:
+            print(f"Found existing corpus with display name '{display_name}'")
+            write_to_env(existing_corpus.name)
+            return existing_corpus.name
+
+    print(f"Creating new corpus with display name '{display_name}'")
     # Create RagCorpus
     # Configure embedding model, for example "text-embedding-005".
     embedding_model_config = rag.RagEmbeddingModelConfig(
@@ -49,21 +58,15 @@ def create_RAG_corpus():
         )
     )
 
-    backend_config = rag.RagVectorDbConfig(
-        rag_embedding_model_config=embedding_model_config
-    )
+    backend_config = rag.RagVectorDbConfig(rag_embedding_model_config=embedding_model_config)
 
     bqml_corpus = rag.create_corpus(
-        display_name=display_name,
-        backend_config=backend_config,
+        display_name=display_name, backend_config=backend_config
     )
 
     write_to_env(bqml_corpus.name)
 
     return bqml_corpus.name
-
-
-def ingest_files(corpus_name):
 
     transformation_config = rag.TransformationConfig(
         chunking_config=rag.ChunkingConfig(
