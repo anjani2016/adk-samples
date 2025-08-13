@@ -96,16 +96,16 @@ to implement this workflow.
 
 ## Running the Agent
 
-**Using `adk`**
 **Using the ADK CLI**
 
-ADK provides convenient ways to bring up agents locally and interact with them.
-You may talk to the agent using the CLI:
 The Python Agent Development Kit (`google-adk` package) includes a command-line tool named `adk` that provides convenient ways to run agents locally.
+
+Because the dependencies were installed with Poetry, you should run the `adk` command using `poetry run`. This ensures the command is executed within the correct virtual environment where the ADK was installed.
+
 You can talk to the agent using the CLI:
 
 ```bash
-adk run financial_advisor
+poetry run adk run financial_advisor
 ```
 
 Or on a web interface:

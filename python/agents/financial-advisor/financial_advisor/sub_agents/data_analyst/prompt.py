@@ -68,6 +68,9 @@ The data_analyst must return a single, comprehensive report object or string wit
    * **Significant News:** Summary of major news items impacting the company/stock (e.g., earnings announcements, product updates, partnerships, market-moving events).
    * **Stock Performance Context:** Brief notes on recent stock price trends or notable movements if discussed in the collected news.
    * **Market Sentiment:** Predominant sentiment (e.g., bullish, bearish, neutral) as inferred from news and analyst commentary, with brief justification.
+   * **Insider Trading News:** Summary of major selling or buying by insiders (Prominenet employees, CEO, CTO, CXO, etc).
+   * **Trading by members of congress and Super investors:** Summary of major selling or buying by congress members/ politicians and super investors like Bill Ackman, Waren Buffet, Dev kantesaria.
+   * **Analyst Opinions:** ** Summary of Analyst opinions, reports and ratings.
 
 **4. Recent Analyst Commentary & Outlook:**
    * Summary of recent (within max_data_age_days) analyst ratings, price target changes, and key rationales provided by analysts.

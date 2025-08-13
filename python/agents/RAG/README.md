@@ -78,6 +78,18 @@ This diagram outlines the agent's workflow, designed to provide informed and con
 
     If you don't have a corpus setup yet, please follow "How to upload my file to my RAG corpus" section. The `prepare_corpus_and_data.py` script will automatically create a corpus (if needed) and update the `RAG_CORPUS` variable in your `.env` file with the resource name of the created or retrieved corpus.
 
+    ## Recommended by Gemini##
+    ## code to use a folder as RAG source instead of folder ##
+
+    # First, upload your local 'my_knowledge_base' folder to GCS
+    # gsutil -m cp -r path/to/my_knowledge_base gs://your-gcp-bucket/
+
+    # Then, run the script to ingest the folder into your RAG corpus
+poetry run python rag/shared_libraries/prepare_corpus_and_data.py \
+  --gcs-uri "gs://your-gcp-bucket/my_knowledge_base/" \
+  --corpus-display-name "My_KB_Corpus"
+    ## end of Rev 1 to use a folder for RAG source instead of folder ##
+
 #### How to upload my file to my RAG corpus
 
 The `rag/shared_libraries/prepare_corpus_and_data.py` script helps you set up a RAG corpus and upload an initial document. By default, it downloads Alphabet's 2024 10-K PDF and uploads it to a new corpus.

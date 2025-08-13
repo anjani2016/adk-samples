@@ -41,7 +41,7 @@ ask_vertex_retrieval = VertexAiRagRetrieval(
 )
 
 root_agent = Agent(
-    model='gemini-2.5-flash',
+    model=os.environ.get("RAG_AGENT_MODEL", "gemini-1.5-flash"), #RAG_AGENT_MODEL added based on gemini recommendation
     name='ask_rag_agent',
     instruction=return_instructions_root(),
     tools=[
